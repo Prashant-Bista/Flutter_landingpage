@@ -26,9 +26,30 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
           color:Colors.orange
         ),
         title: Row(
+
           children: [
+            Spacer(flex: 3,),
             TabsWeb("Home"),
+            Spacer(),
+            TabsWeb("Works"),
+            Spacer(),
+            TabsWeb("Blogs"),
+            Spacer(),
+            TabsWeb("About"),
+            Spacer(),
+            TabsWeb("Contact"),
+            Spacer(),
+            
           ],
+        ),
+      ),
+      body: CircleAvatar(
+        radius: 103,
+        backgroundColor: Colors.black,
+        child: CircleAvatar(
+          backgroundColor: Colors.white,
+          backgroundImage: AssetImage("assets/PP-circle.png"),
+          radius: 100,
         ),
       ),
     );
