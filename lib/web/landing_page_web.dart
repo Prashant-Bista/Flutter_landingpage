@@ -13,6 +13,7 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
   @override
   Widget build(BuildContext context) {
     var heightdevice = MediaQuery.of(context).size.height;
+    var widthdevice= MediaQuery.of(context).size.width;
     return Scaffold(
       drawer: Drawer(//To create a drawer menu
 
@@ -43,6 +44,7 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
         ),
       ),
       body: ListView(children: [
+        //first section
         Container(
           height: heightdevice - 56,
           child: Row(
@@ -110,7 +112,7 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
             ],
           ),
         ),
-        //stating the begining of the second page
+        //starting the begining of the second page
         Container(
           height: heightdevice/1.5,
           child: Row(
@@ -200,7 +202,79 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
               ),
             ],
           ),
+        ),
+        //Third section of the page
+        Container(
+          height: heightdevice/1.3,
+          child: Column(
+            children: [
+              SansBold("What I do?",40.0),
+              Row(
+                mainAxisAlignment:MainAxisAlignment.spaceEvenly ,
+                children: [
+                  Card(
+                    elevation: 30,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0)
+                    ),
+                    shadowColor: Colors.tealAccent,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset("assets/webL.png",height: 200.0,width:200.0),
+                          SizedBox(height: 10,)
+                          ,SansBold("Web Development", 15.0)
+                        ],
+                      ),
+                    ),
+                  ),
+                  Card(
+                    elevation: 30,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0)
+                    ),
+                    shadowColor: Colors.tealAccent,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset("assets/app.png",height: 200.0,width:200.0,fit: BoxFit.contain),
+                          SizedBox(height: 10,)
+                          ,SansBold("App Development", 15.0)
+                        ],
+                      ),
+                    ),
+                  ),
+                  Card(
+                    elevation: 30,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0)
+                    ),
+                    shadowColor: Colors.tealAccent,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset("assets/firebase.png",height: 200.0,width:200.0),
+                          SizedBox(height: 10,)
+                          ,SansBold("Back-End Development", 15.0)
+                        ],
+                      ),
+                    ),
+                  ),
+
+
+                ],
+              )
+            ],
+          ),
+
         )
+
       ]),
     );
   }
