@@ -59,11 +59,12 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
                     decoration: BoxDecoration(
                         color: Colors.lightBlueAccent,
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(25),
-                          topRight: Radius.circular(25),
-                          bottomRight: Radius.circular(25),
+                          topLeft: Radius.circular(25.0),
+                          topRight: Radius.circular(25.0),
+                          bottomRight: Radius.circular(25.0),
                         )),
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                    padding:
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
                     child: SansBold("Hello, I'm", 20.0),
                   ),
                   SizedBox(height: 15),
@@ -76,7 +77,7 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
                     children: [
                       Icon(Icons.email),
                       SizedBox(
-                        width: 20,
+                        width: 20.0,
                       ),
                       Sans("bistaprashant@gmail.com", 15.0)
                     ],
@@ -85,7 +86,7 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
                     children: [
                       Icon(Icons.phone),
                       SizedBox(
-                        width: 20,
+                        width: 20.0,
                       ),
                       Sans("9812345678", 15.0)
                     ],
@@ -105,9 +106,9 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
               //create a border of different colors
               CircleAvatar(
                 backgroundColor: Colors.black,
-                radius: 139,
+                radius: 139.0,
                 child: CircleAvatar(
-                  radius: 137,
+                  radius: 137.0,
                   backgroundColor: Colors.lightBlueAccent,
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
@@ -141,7 +142,7 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
                       "Hello, I'm Prashant Bista. I speacialize in flutter UI Development.",
                       15.0),
                   SizedBox(
-                    height: 15,
+                    height: 15.0,
                   ),
                   Sans(
                       "I don't plan to stay a frontend developer only. Soon, there will be more from me.",
@@ -158,12 +159,12 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
                             style: BorderStyle.solid,
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(7),
+                          borderRadius: BorderRadius.circular(7.0),
                         ),
                         child: Sans("Flutter", 15.0),
                       ),
                       SizedBox(
-                        width: 7,
+                        width: 7.0,
                       ),
                       Container(
                         decoration: BoxDecoration(
@@ -172,7 +173,7 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
                             style: BorderStyle.solid,
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(7),
+                          borderRadius: BorderRadius.circular(7.0),
                         ),
                         child: Sans("Firebase", 15.0),
                       ),
@@ -191,7 +192,7 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
                         child: Sans("Android", 15.0),
                       ),
                       SizedBox(
-                        width: 7,
+                        width: 7.0,
                       ),
                       Container(
                         decoration: BoxDecoration(
@@ -200,7 +201,7 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
                             style: BorderStyle.solid,
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(7),
+                          borderRadius: BorderRadius.circular(7.0),
                         ),
                         child: Sans("IOS", 15.0),
                       ),
@@ -214,7 +215,7 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
                             style: BorderStyle.solid,
                             width: 2.0,
                           ),
-                          borderRadius: BorderRadius.circular(7),
+                          borderRadius: BorderRadius.circular(7.0),
                         ),
                         child: Sans("Linux", 15.0),
                       )
@@ -234,66 +235,10 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Card(
-                    elevation: 30,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0)),
-                    shadowColor: Colors.lightBlueAccent,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset("assets/webL.png",
-                              height: 200.0, width: 200.0),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          SansBold("Web Development", 15.0)
-                        ],
-                      ),
-                    ),
-                  ),
-                  Card(
-                    elevation: 30,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0)),
-                    shadowColor: Colors.lightBlueAccent,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset("assets/app.png",
-                              height: 200.0, width: 200.0, fit: BoxFit.contain),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          SansBold("App Development", 15.0)
-                        ],
-                      ),
-                    ),
-                  ),
-                  Card(
-                    elevation: 30,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0)),
-                    shadowColor: Colors.lightBlueAccent,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset("assets/firebase.png",
-                              height: 200.0, width: 200.0),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          SansBold("Back-End Development", 15.0)
-                        ],
-                      ),
-                    ),
-                  ),
+                  AnimatedCardWeb(imagepath: "assets/webL.png", text: "Web Development",fit: BoxFit.contain,reverse: true,),
+                  AnimatedCardWeb(imagepath: "assets/app.png", text: "App Development"),
+          AnimatedCardWeb(imagepath: "assets/firebase.png", text: "Back-End Development",reverse: true,),
+
                 ],
               )
             ],
@@ -345,6 +290,21 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
                 heading: "Message",
                 width: widthdevice / 1.5,
                 maxlines: 10,
+              ),
+              MaterialButton(
+                onPressed: () {},
+                elevation: 20.0,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Colors.lightBlueAccent),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                height: 60.0,
+                minWidth: 200.0,
+                color: Colors.lightBlueAccent,
+                child: SansBold("Submit", 20.0),
+              ),
+              SizedBox(
+                height: 20.0,
               )
             ],
           ),

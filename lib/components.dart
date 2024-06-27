@@ -32,14 +32,14 @@ class _TabsWebState extends State<TabsWeb> {
           duration: const Duration(milliseconds: 100),
           curve: Curves.easeInExpo,
           style: isSelected
-              ? GoogleFonts.maitree(
+              ? GoogleFonts.roboto(
                   fontSize: 25,
                   color: Colors.transparent,
                   shadows: [Shadow(color: Colors.black, offset: Offset(0, -8))],
                   decoration: TextDecoration.underline,
                   decorationThickness: 1,
                   decorationColor: Colors.black)
-              : GoogleFonts.maitree(color: Colors.black, fontSize: 23),
+              : GoogleFonts.roboto(color: Colors.black, fontSize: 23),
           child: Text(
             widget.title,
           ),
@@ -127,3 +127,64 @@ class TextForm extends StatelessWidget {
     );
   }
 }
+
+class AnimatedCardWeb extends StatefulWidget {
+  final imagepath;
+  final text;
+  final fit;
+  final reverse;
+  const AnimatedCardWeb({super.key, @required this.imagepath,@required this.text, this.fit, this.reverse,});
+
+  @override
+  State<AnimatedCardWeb> createState() => _AnimatedCardWebState();
+}
+
+class _AnimatedCardWebState extends State<AnimatedCardWeb> with SingleTickerProviderStateMixin {
+  late AnimationController _controller=AnimationController(vsync: this,
+  duration : const Duration(seconds: 4))..repeat(reverse: true);
+//choose offset as the type of the animation
+  late Animation<Offset> _animation= Tween(
+    //Since our animated cards are going to move in two directions, we need to write that whenever the widget
+    // dot reverse is true, then the starting position of the card widget will be offset zero comma 0.08 and
+    begin: widget.reverse==true? Offset(0,0.08): Offset.zero,
+    end: widget.reverse==true? Offset.zero: Offset(0,0.08)
+      //This way the properties got attached to the controller.
+  ).animate(_controller);
+
+  
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return  SlideTransition(position: _animation,
+      child: Card(
+        elevation: 30.0,
+        shape: RoundedRectangleBorder(
+            side: BorderSide(color: Colors.lightBlueAccent),
+            borderRadius: BorderRadius.circular(15.0)),
+        shadowColor: Colors.lightBlueAccent,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(
+              widget.imagepath,
+                  height: 200.0, width: 200.0,
+              fit: widget.fit ==null?null:widget.fit),
+              SizedBox(
+                height: 10.0,
+              ),
+              SansBold(widget.text, 15.0)
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
