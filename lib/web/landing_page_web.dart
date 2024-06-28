@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prashant_bista/components.dart';
 
@@ -15,8 +16,29 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
     var heightdevice = MediaQuery.of(context).size.height;
     var widthdevice = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(//To create a drawer menu
-
+      drawer:  Drawer(//To create a drawer menu
+        backgroundColor: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [CircleAvatar(
+            radius:72.0,
+            backgroundColor: Colors.lightBlueAccent,
+            child: CircleAvatar(
+            radius: 70.0,backgroundColor: Colors.white,
+              backgroundImage: AssetImage("assets/PP-circle.png"),
+            ),
+          ),
+          SizedBox(height: 50.0,),
+            SansBold("Prashant Bisa", 30.0),
+            SizedBox(height: 15.0),
+             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SvgPicture.asset("asset/instagram.svg",color: Colors.black,width: 35.0,),
+              ],
+            )
+          ],
+        ),
           ),
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -126,7 +148,7 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Image.asset("assets/web.jpg"),
+              Image.asset("assets/web.jpg",height: widthdevice/1.9,),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,7 +167,7 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
                     height: 15.0,
                   ),
                   Sans(
-                      "I don't plan to stay a frontend developer only. Soon, there will be more from me.",
+                      "I don't plan to stay a frontend developer. Soon, there will be more from me.",
                       15.0),
                   SizedBox(
                     height: 10.0,
