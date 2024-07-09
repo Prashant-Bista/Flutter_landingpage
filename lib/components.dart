@@ -29,7 +29,7 @@ class _TabsWebState extends State<TabsWeb> {
           });
         },
         child: AnimatedDefaultTextStyle(
-          duration: const Duration(milliseconds: 100),
+          duration: const Duration(milliseconds: 75),
           curve: Curves.easeInExpo,
           style: isSelected
               ? GoogleFonts.roboto(
@@ -38,8 +38,8 @@ class _TabsWebState extends State<TabsWeb> {
                   shadows: [Shadow(color: Colors.black, offset: Offset(0, -8))],
                   decoration: TextDecoration.underline,
                   decorationThickness: 1,
-                  decorationColor: Colors.black)
-              : GoogleFonts.roboto(color: Colors.black, fontSize: 23),
+                  decorationColor: Colors.lightBlueAccent)
+              : GoogleFonts.roboto(color: Colors.black, fontSize: 20.0),
           child: Text(
             widget.title,
           ),

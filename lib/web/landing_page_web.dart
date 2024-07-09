@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:prashant_bista/components.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LandingPageWeb extends StatefulWidget {
   const LandingPageWeb({super.key});
@@ -11,35 +12,49 @@ class LandingPageWeb extends StatefulWidget {
 }
 
 class _LandingaPageMobileState extends State<LandingPageWeb> {
+  urlLauncher(String impath,String url){
+   return IconButton(
+        onPressed: () async{
+          await launchUrl(Uri.parse(url));
+        },
+        icon: Image.asset(impath,width: 35.0,height: 35.0,));
+  }
   @override
   Widget build(BuildContext context) {
     var heightdevice = MediaQuery.of(context).size.height;
     var widthdevice = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer:  Drawer(//To create a drawer menu
+      drawer: Drawer(
+        //To create a drawer menu
         backgroundColor: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [CircleAvatar(
-            radius:72.0,
-            backgroundColor: Colors.lightBlueAccent,
-            child: CircleAvatar(
-            radius: 70.0,backgroundColor: Colors.white,
-              backgroundImage: AssetImage("assets/PP-circle.png"),
+          children: [
+            CircleAvatar(
+              radius: 72.0,
+              backgroundColor: Colors.lightBlueAccent,
+              child: CircleAvatar(
+                radius: 70.0,
+                backgroundColor: Colors.white,
+                backgroundImage: AssetImage("assets/PP-circle.png"),
+              ),
             ),
-          ),
-          SizedBox(height: 50.0,),
+            SizedBox(
+              height: 50.0,
+            ),
             SansBold("Prashant Bisa", 30.0),
             SizedBox(height: 15.0),
-             Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SvgPicture.asset("asset/instagram.svg",color: Colors.black,width: 35.0,),
-              ],
+                urlLauncher("assets/instagram.png", "https://www.instagram.com/prashantbista7/"),
+                urlLauncher("assets/github.png","https://github.com/Prashant-Bista" ),
+                urlLauncher("assets/linkedin.png", "https://www.linkedin.com/in/prashant-bista-9016b5270/")
+               ],
             )
           ],
         ),
-          ),
+      ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -148,7 +163,10 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Image.asset("assets/web.jpg",height: widthdevice/1.9,),
+              Image.asset(
+                "assets/web.jpg",
+                height: widthdevice / 1.9,
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -257,10 +275,19 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  AnimatedCardWeb(imagepath: "assets/webL.png", text: "Web Development",fit: BoxFit.contain,reverse: true,),
-                  AnimatedCardWeb(imagepath: "assets/app.png", text: "App Development"),
-          AnimatedCardWeb(imagepath: "assets/firebase.png", text: "Back-End Development",reverse: true,),
-
+                  AnimatedCardWeb(
+                    imagepath: "assets/webL.png",
+                    text: "Web Development",
+                    fit: BoxFit.contain,
+                    reverse: true,
+                  ),
+                  AnimatedCardWeb(
+                      imagepath: "assets/app.png", text: "App Development"),
+                  AnimatedCardWeb(
+                    imagepath: "assets/firebase.png",
+                    text: "Back-End Development",
+                    reverse: true,
+                  ),
                 ],
               )
             ],
