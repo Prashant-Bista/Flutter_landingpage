@@ -9,12 +9,12 @@ class Routes {
         builder: (_) => LayoutBuilder(builder: (context, constrains) {
               switch (settings.name) {
                 case '/':
-                  if (constrains.maxWidth <= 800) {
+                  if (constrains.maxWidth >= 800) {
                     return LandingPageWeb();
                   } else
                     return LandingaPageMobile();
                 default:
-                  if (constrains.maxWidth <= 800) {
+                  if (constrains.maxWidth >= 800) {
                     return LandingPageWeb();
                   } else
                     return LandingaPageMobile();
