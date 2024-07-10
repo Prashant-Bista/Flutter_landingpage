@@ -47,6 +47,35 @@ class _TabsWebState extends State<TabsWeb> {
   }
 }
 
+class TabsMobile extends StatefulWidget {
+  final text;
+  final route;
+  const TabsMobile({super.key, @required this.text, @required this.route});
+
+  @override
+  State<TabsMobile> createState() => _TabsMobileState();
+}
+
+class _TabsMobileState extends State<TabsMobile> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      onPressed: () {},
+      color: Colors.black,
+      elevation: 20.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(5.0)),
+      ),
+      height: 50.0,
+      minWidth: 200.0,
+      child: Text(
+        widget.text,
+        style: GoogleFonts.openSans(fontSize: 20.0, color: Colors.white),
+      ),
+    );
+  }
+}
+
 class SansBold extends StatelessWidget {
   final text;
   final size;
@@ -79,7 +108,12 @@ class TextForm extends StatelessWidget {
   final hintText;
   final width;
   final maxlines;
-  const TextForm({super.key,@required this.hintText,@required this.heading, @required this.width, this.maxlines});
+  const TextForm(
+      {super.key,
+      @required this.hintText,
+      @required this.heading,
+      @required this.width,
+      this.maxlines});
 
   @override
   Widget build(BuildContext context) {
@@ -93,30 +127,32 @@ class TextForm extends StatelessWidget {
         SizedBox(
           width: 350,
           child: TextFormField(
-            maxLines: maxlines==null?null:maxlines,
+            maxLines: maxlines == null ? null : maxlines,
             decoration: InputDecoration(
-              focusedErrorBorder:OutlineInputBorder(
+              focusedErrorBorder: OutlineInputBorder(
                 borderSide:
-                BorderSide(color: Colors.red, style: BorderStyle.solid),
+                    BorderSide(color: Colors.red, style: BorderStyle.solid),
                 borderRadius: BorderRadius.all(
                   Radius.circular(10.0),
                 ),
-              ) ,
+              ),
               enabledBorder: OutlineInputBorder(
-                borderSide:
-                    BorderSide(color: Colors.lightBlue, style: BorderStyle.solid),
+                borderSide: BorderSide(
+                    color: Colors.lightBlue, style: BorderStyle.solid),
                 borderRadius: BorderRadius.all(
                   Radius.circular(10.0),
                 ),
               ),
               focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
+                  borderSide:
+                      BorderSide(color: Colors.lightBlueAccent, width: 2.0),
                   borderRadius: BorderRadius.all(Radius.circular(15.0))),
               hintText: hintText,
               hintStyle: GoogleFonts.poppins(fontSize: 14.0),
             ),
-            validator: (text){
-              if (RegExp("\\bprashant\\b",caseSensitive: false).hasMatch(text.toString())){
+            validator: (text) {
+              if (RegExp("\\bprashant\\b", caseSensitive: false)
+                  .hasMatch(text.toString())) {
                 return "Match found";
               }
             },
@@ -133,25 +169,33 @@ class AnimatedCardWeb extends StatefulWidget {
   final text;
   final fit;
   final reverse;
-  const AnimatedCardWeb({super.key, @required this.imagepath,@required this.text, this.fit, this.reverse,});
+  const AnimatedCardWeb({
+    super.key,
+    @required this.imagepath,
+    @required this.text,
+    this.fit,
+    this.reverse,
+  });
 
   @override
   State<AnimatedCardWeb> createState() => _AnimatedCardWebState();
 }
 
-class _AnimatedCardWebState extends State<AnimatedCardWeb> with SingleTickerProviderStateMixin {
-  late AnimationController _controller=AnimationController(vsync: this,
-  duration : const Duration(seconds: 4))..repeat(reverse: true);
+class _AnimatedCardWebState extends State<AnimatedCardWeb>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller =
+      AnimationController(vsync: this, duration: const Duration(seconds: 4))
+        ..repeat(reverse: true);
 //choose offset as the type of the animation
-  late Animation<Offset> _animation= Tween(
-    //Since our animated cards are going to move in two directions, we need to write that whenever the widget
-    // dot reverse is true, then the starting position of the card widget will be offset zero comma 0.08 and
-    begin: widget.reverse==true? Offset(0,0.08): Offset.zero,
-    end: widget.reverse==true? Offset.zero: Offset(0,0.08)
-      //This way the properties got attached to the controller.
-  ).animate(_controller);
+  late Animation<Offset> _animation = Tween(
+          //Since our animated cards are going to move in two directions, we need to write that whenever the widget
+          // dot reverse is true, then the starting position of the card widget will be offset zero comma 0.08 and
+          begin: widget.reverse == true ? Offset(0, 0.08) : Offset.zero,
+          end: widget.reverse == true ? Offset.zero : Offset(0, 0.08)
+          //This way the properties got attached to the controller.
+          )
+      .animate(_controller);
 
-  
   @override
   void dispose() {
     _controller.dispose();
@@ -160,7 +204,8 @@ class _AnimatedCardWebState extends State<AnimatedCardWeb> with SingleTickerProv
 
   @override
   Widget build(BuildContext context) {
-    return  SlideTransition(position: _animation,
+    return SlideTransition(
+      position: _animation,
       child: Card(
         elevation: 30.0,
         shape: RoundedRectangleBorder(
@@ -172,10 +217,10 @@ class _AnimatedCardWebState extends State<AnimatedCardWeb> with SingleTickerProv
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-              widget.imagepath,
-                  height: 200.0, width: 200.0,
-              fit: widget.fit ==null?null:widget.fit),
+              Image.asset(widget.imagepath,
+                  height: 200.0,
+                  width: 200.0,
+                  fit: widget.fit == null ? null : widget.fit),
               SizedBox(
                 height: 10.0,
               ),
@@ -187,4 +232,3 @@ class _AnimatedCardWebState extends State<AnimatedCardWeb> with SingleTickerProv
     );
   }
 }
-
