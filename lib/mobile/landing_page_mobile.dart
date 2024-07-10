@@ -87,6 +87,71 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
           ],
         ),
       ),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: Column(
+              children: [
+                CircleAvatar(
+                  radius: 117.0,
+                  backgroundColor: Colors.lightBlueAccent,
+                  child: CircleAvatar(
+                    radius: 110.0,
+                    backgroundImage: AssetImage("assets/PP-circle.png"),
+                  ),
+                ),
+                SizedBox(
+                  height: 25.0,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20.0),
+                          bottomRight: Radius.circular(20.0),
+                          topRight: Radius.circular(20.0),
+                        ),
+                        color: Colors.lightBlueAccent,
+                      ),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 20.0),
+                      child: SansBold("Hello I'm", 15.0),
+                    ),
+                    SansBold("Prashant Bista", 30.0),
+                    SansBold("Flutter Developer", 15.0),
+                  ],
+                ),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Wrap(
+                    direction: Axis.vertical,
+                    spacing: 3.0,
+                    children: [
+                      Icon(Icons.email),
+                      Icon(Icons.call),
+                      Icon(Icons.location_pin)
+                    ],
+                  ),
+                  SizedBox(
+                    width: 40,
+                  ),
+                  Wrap(
+                    direction: Axis.vertical,
+                    spacing: 9.0,
+                    children: [
+                      Sans("prashantbista@gmail.com", 15.0),
+                      Sans("9812345678", 15.0),
+                      Sans("221B Baker Street", 15.0)
+                    ],
+                  ),
+                ])
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
