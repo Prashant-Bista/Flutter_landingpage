@@ -12,13 +12,18 @@ class LandingPageWeb extends StatefulWidget {
 }
 
 class _LandingaPageMobileState extends State<LandingPageWeb> {
-  urlLauncher(String impath,String url){
-   return IconButton(
-        onPressed: () async{
+  urlLauncher(String impath, String url) {
+    return IconButton(
+        onPressed: () async {
           await launchUrl(Uri.parse(url));
         },
-        icon: Image.asset(impath,width: 35.0,height: 35.0,));
+        icon: Image.asset(
+          impath,
+          width: 35.0,
+          height: 35.0,
+        ));
   }
+
   @override
   Widget build(BuildContext context) {
     var heightdevice = MediaQuery.of(context).size.height;
@@ -47,10 +52,13 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                urlLauncher("assets/instagram.png", "https://www.instagram.com/prashantbista7/"),
-                urlLauncher("assets/github.png","https://github.com/Prashant-Bista" ),
-                urlLauncher("assets/linkedin.png", "https://www.linkedin.com/in/prashant-bista-9016b5270/")
-               ],
+                urlLauncher("assets/instagram.png",
+                    "https://www.instagram.com/prashantbista7/"),
+                urlLauncher(
+                    "assets/github.png", "https://github.com/Prashant-Bista"),
+                urlLauncher("assets/linkedin.png",
+                    "https://www.linkedin.com/in/prashant-bista-9016b5270/")
+              ],
             )
           ],
         ),
@@ -307,14 +315,14 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
                     children: [
                       TextForm(
                         hintText: "Enter the first name",
-                        heading: "First Name",
-                        width: 350,
+                        text: "First Name",
+                        Containerwidth: 350,
                       ),
                       SizedBox(height: 15),
                       TextForm(
                           hintText: "Please enter your Email Address",
-                          heading: "Email",
-                          width: 350),
+                          text: "Email",
+                          Containerwidth: 350),
                     ],
                   ),
                   Column(
@@ -323,21 +331,21 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
                     children: [
                       TextForm(
                           hintText: "Please Enter your Last Name",
-                          heading: "Last Name",
-                          width: 350),
+                          text: "Last Name",
+                          Containerwidth: 350),
                       SizedBox(height: 15.0),
                       TextForm(
                           hintText: ("Please Enter your phone number "),
-                          heading: "Phone Number",
-                          width: 350)
+                          text: "Phone Number",
+                          Containerwidth: 350)
                     ],
                   )
                 ],
               ),
               TextForm(
                 hintText: "Please type your message",
-                heading: "Message",
-                width: widthdevice / 1.5,
+                text: "Message",
+                Containerwidth: widthdevice / 1.5,
                 maxlines: 10,
               ),
               MaterialButton(
