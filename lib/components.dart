@@ -7,7 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 class TabsWeb extends StatefulWidget {
   final title;
-  const TabsWeb(this.title, {super.key});
+  final route;
+  const TabsWeb({super.key, this.title, this.route});
 
   @override
   State<TabsWeb> createState() => _TabsWebState();
@@ -17,33 +18,40 @@ class _TabsWebState extends State<TabsWeb> {
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-        onEnter: (_) {
-          setState(() {
-            isSelected = true;
-          });
-        },
-        onExit: (_) {
-          setState(() {
-            isSelected = false;
-          });
-        },
-        child: AnimatedDefaultTextStyle(
-          duration: const Duration(milliseconds: 75),
-          curve: Curves.easeInExpo,
-          style: isSelected
-              ? GoogleFonts.roboto(
-                  fontSize: 25,
-                  color: Colors.transparent,
-                  shadows: [Shadow(color: Colors.black, offset: Offset(0, -8))],
-                  decoration: TextDecoration.underline,
-                  decorationThickness: 1,
-                  decorationColor: Colors.lightBlueAccent)
-              : GoogleFonts.roboto(color: Colors.black, fontSize: 20.0),
-          child: Text(
-            widget.title,
-          ),
-        ));
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushNamed(widget.route);
+      },
+      child: MouseRegion(
+          onEnter: (_) {
+            setState(() {
+              isSelected = true;
+            });
+          },
+          onExit: (_) {
+            setState(() {
+              isSelected = false;
+            });
+          },
+          child: AnimatedDefaultTextStyle(
+            duration: const Duration(milliseconds: 75),
+            curve: Curves.easeInExpo,
+            style: isSelected
+                ? GoogleFonts.roboto(
+                    fontSize: 25,
+                    color: Colors.transparent,
+                    shadows: [
+                      Shadow(color: Colors.black, offset: Offset(0, -8))
+                    ],
+                    decoration: TextDecoration.underline,
+                    decorationThickness: 1,
+                    decorationColor: Colors.lightBlueAccent)
+                : GoogleFonts.roboto(color: Colors.black, fontSize: 20.0),
+            child: Text(
+              widget.title,
+            ),
+          )),
+    );
   }
 }
 
@@ -60,7 +68,9 @@ class _TabsMobileState extends State<TabsMobile> {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pushNamed('/');
+      },
       color: Colors.black,
       elevation: 20.0,
       shape: RoundedRectangleBorder(

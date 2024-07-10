@@ -75,15 +75,30 @@ class _LandingaPageMobileState extends State<LandingPageWeb> {
             Spacer(
               flex: 3,
             ),
-            TabsWeb("Home"),
+            TabsWeb(
+              title: "Home",
+              route: '/',
+            ),
             Spacer(),
-            TabsWeb("Works"),
+            TabsWeb(
+              title: "Works",
+              route: "/works",
+            ),
             Spacer(),
-            TabsWeb("Blogs"),
+            TabsWeb(
+              title: "Blogs",
+              route: "/blogs",
+            ),
             Spacer(),
-            TabsWeb("About"),
+            TabsWeb(
+              title: "About",
+              route: "/about",
+            ),
             Spacer(),
-            TabsWeb("Contact"),
+            TabsWeb(
+              title: "Contact",
+              route: "/contact",
+            ),
             Spacer(),
           ],
         ),

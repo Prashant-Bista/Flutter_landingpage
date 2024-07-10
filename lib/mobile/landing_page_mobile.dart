@@ -228,6 +228,7 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
                 Wrap(
                   spacing: 20.0,
                   runSpacing: 20.0,
+                  alignment: WrapAlignment.center,
                   children: [
                     TextForm(
                         text: "First Name",
@@ -253,6 +254,9 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
                     ),
                   ],
                 ),
+                SizedBox(
+                  height: 20,
+                ),
                 MaterialButton(
                   child: SansBold("Submit", 30.0),
                   color: Colors.lightBlueAccent,
@@ -261,7 +265,7 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
                       borderRadius: BorderRadius.circular(10.0)),
                   height: 60.0,
                   minWidth: widthDevice / 2.2,
-                )
+                ),
               ],
             ),
           ],
