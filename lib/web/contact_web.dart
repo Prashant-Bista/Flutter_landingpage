@@ -184,7 +184,7 @@ class _ContactWebState extends State<ContactWeb> {
                   height: 20,
                 ),
                 MaterialButton(
-                  child: Sans("Submit", 33.0),
+                  child: Sans("Submit", 20.0),
                   onPressed: () {},
                   elevation: 20.0,
                   shape: RoundedRectangleBorder(
