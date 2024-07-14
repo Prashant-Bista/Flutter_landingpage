@@ -6,26 +6,34 @@ import "package:prashant_bista/web/landing_page_web.dart";
 
 class Routes {
   static Route<dynamic>? generateRoutes(RouteSettings settings) {
-    return MaterialPageRoute(
-        settings: settings,
-        builder: (_) => LayoutBuilder(builder: (context, constrains) {
-              switch (settings.name) {
-                case '/':
+    switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(
+            settings: settings,
+            builder: (_) => LayoutBuilder(builder: (context, constrains) {
                   if (constrains.maxWidth >= 800) {
                     return LandingPageWeb();
                   } else
                     return LandingaPageMobile();
-                case '/contact':
-                  if (constrains.maxWidth >= 800) {
+                }));
+      case '/contact':
+        return MaterialPageRoute(
+            settings: settings,
+            builder: (_) => LayoutBuilder(builder: (context, constraits) {
+                  if (constraits.maxWidth >= 800)
                     return ContactWeb();
-                  } else
+                  else
                     return ContactMobile();
-                default:
-                  if (constrains.maxWidth >= 800) {
+                }));
+      default:
+        return MaterialPageRoute(
+            settings: settings,
+            builder: (_) => LayoutBuilder(builder: (context, constraints) {
+                  if (constraints.maxWidth >= 800)
                     return LandingPageWeb();
-                  } else
+                  else
                     return LandingaPageMobile();
-              }
-            }));
+                }));
+    }
   }
 }

@@ -69,7 +69,7 @@ class _TabsMobileState extends State<TabsMobile> {
   Widget build(BuildContext context) {
     return MaterialButton(
       onPressed: () {
-        Navigator.of(context).pushNamed('/');
+        Navigator.of(context).pushNamed(widget.route);
       },
       color: Colors.black,
       elevation: 20.0,
