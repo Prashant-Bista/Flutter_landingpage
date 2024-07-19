@@ -20,7 +20,7 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             size: 35.0,
             color: Colors.black,
           ),
@@ -30,31 +30,31 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               DrawerHeader(
-                  padding: EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(bottom: 20),
                   child: Container(
                     decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(width: 2.0, color: Colors.black)),
                     child: Image.asset('assets/PP-circle.png'),
                   )),
-              TabsMobile(text: "Home", route: "/"),
-              SizedBox(
+              const TabsMobile(text: "Home", route: "/"),
+              const SizedBox(
                 height: 20,
               ),
-              TabsMobile(text: "About", route: '/about'),
-              SizedBox(
+              const TabsMobile(text: "About", route: '/about'),
+              const SizedBox(
                 height: 20,
               ),
-              TabsMobile(text: "Works", route: '/works'),
-              SizedBox(
+              const TabsMobile(text: "Works", route: '/works'),
+              const SizedBox(
                 height: 20,
               ),
-              TabsMobile(text: "Blog", route: '/blog'),
-              SizedBox(
+              const TabsMobile(text: "Blog", route: '/blog'),
+              const SizedBox(
                 height: 20,
               ),
-              TabsMobile(text: "Contact", route: '/contact'),
-              SizedBox(
+              const TabsMobile(text: "Contact", route: '/contact'),
+              const SizedBox(
                 height: 40,
               ),
               Row(
@@ -91,27 +91,29 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
         ),
         body: ListView(
           children: [
+            const CircleAvatar(
+              radius: 117.0,
+              backgroundColor: Colors.lightBlueAccent,
+              child: CircleAvatar(
+                radius: 110.0,
+                backgroundImage: AssetImage("assets/PP-circle.png"),
+              ),
+            ),
             //Intro, first section
             Padding(
-              padding: const EdgeInsets.only(left: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
-                    radius: 117.0,
-                    backgroundColor: Colors.lightBlueAccent,
-                    child: CircleAvatar(
-                      radius: 110.0,
-                      backgroundImage: AssetImage("assets/PP-circle.png"),
-                    ),
-                  ),
-                  SizedBox(
+
+                 const SizedBox(
                     height: 25.0,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20.0),
                             bottomRight: Radius.circular(20.0),
@@ -119,15 +121,15 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
                           ),
                           color: Colors.lightBlueAccent,
                         ),
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 20.0),
-                        child: SansBold("Hello I'm", 15.0),
+                        child:const SansBold("Hello I'm", 15.0),
                       ),
-                      SansBold("Prashant Bista", 30.0),
-                      SansBold("Flutter Developer", 15.0),
+                      const SansBold("Prashant Bista", 30.0),
+                      const SansBold("Flutter Developer", 15.0),
                     ],
                   ),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  const Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                     Wrap(
                       direction: Axis.vertical,
                       spacing: 3.0,
@@ -153,15 +155,15 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 90.0,
             ),
             //About me, second section
-            Padding(
-                padding: EdgeInsets.only(left: 20.0),
+           const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SansBold("About Me", 40.0),
                     Sans(
@@ -185,38 +187,37 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
                     )
                   ],
                 )),
-            SizedBox(
+            const SizedBox(
               height: 60.0,
             ),
             //what I do?, Third section
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SansBold("What I do", 40.0),
-                AnimatedCardWeb(
+               const SansBold("What I do", 40.0), const  AnimatedCardWeb(
                   imagepath: "assets/webL.png",
                   text: "Web Development",
                   width: 300.0,
                 ),
-                SizedBox(height: 35.0),
-                AnimatedCardWeb(
+                const  SizedBox(height: 35.0),
+                const AnimatedCardWeb(
                   imagepath: "assets/app.png",
                   text: "App Development",
                   width: 300.0,
                   fit: BoxFit.contain,
                   reverse: true,
                 ),
-                SizedBox(height: 35.0),
-                AnimatedCardWeb(
+                const SizedBox(height: 35.0),
+                const AnimatedCardWeb(
                   imagepath: "assets/firebase.png",
                   text: "Backend Development",
                   width: 300.0,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 60,
                 ),
                 //Contact, Fourth sectoin
-                Wrap(
+                const Wrap(
                   runSpacing: 20.0,
                   spacing: 20.0,
                   alignment: WrapAlignment.center,
@@ -224,7 +225,7 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
                     SansBold("Contact Me", 40.0),
                   ],
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Wrap(
                   spacing: 20.0,
                   runSpacing: 20.0,
@@ -254,17 +255,16 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                MaterialButton(
-                  child: SansBold("Submit", 30.0),
+                 MaterialButton(
                   color: Colors.lightBlueAccent,
                   onPressed: () {},
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0)),
                   height: 60.0,
-                  minWidth: widthDevice / 2.2,
+                  minWidth: widthDevice / 2.2, child: const SansBold("Submit", 30.0),
                 ),
               ],
             ),

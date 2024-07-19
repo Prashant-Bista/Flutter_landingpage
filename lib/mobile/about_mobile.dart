@@ -3,20 +3,26 @@ import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../components.dart';
-
-class ContactMobile extends StatefulWidget {
-  const ContactMobile({super.key});
+class AboutMobile extends StatefulWidget {
+  const AboutMobile({super.key});
 
   @override
-  State<ContactMobile> createState() => _ContactMobileState();
+  State<AboutMobile> createState() => _AboutMobileState();
 }
 
-class _ContactMobileState extends State<ContactMobile> {
+class _AboutMobileState extends State<AboutMobile> {
   @override
   Widget build(BuildContext context) {
-    double widthdevice= MediaQuery.of(context).size.width;
-    return Scaffold(
+    return SafeArea(child:Scaffold(
       extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        iconTheme: IconThemeData(
+          size: 35.0,
+          color: Colors.black,
+        ),
+      ),
       endDrawer: Drawer(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -81,53 +87,56 @@ class _ContactMobileState extends State<ContactMobile> {
           ],
         ),
       ),
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            SliverAppBar(
-              expandedHeight: 400.0 ,
-              backgroundColor: Colors.white,
-              iconTheme: IconThemeData(size: 35.0, color: Colors.black),
-              flexibleSpace: FlexibleSpaceBar(
-                background: Image.asset("assets/contact_image.jpg",fit: BoxFit.cover,),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: ListView(
+          children: [
+            //Introduciton, first section
+            CircleAvatar(
+              radius: 117.0,
+              backgroundColor: Colors.lightBlueAccent,
+              child: CircleAvatar(
+                radius: 113.0,
+                backgroundColor: Colors.black,
+                child:CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 110.0,
+                  backgroundImage: AssetImage('assets/PP-circle.png',),
+                )
               ),
-            )
-          ];
-        },
-        body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(vertical: 25.0),
-          child: Wrap(
-            spacing: 20.0,
-            runSpacing: 20.0,
-            alignment: WrapAlignment.center,
-            children:[Column(children:[
-              SansBold("Contact_me", 35.0),
-              SizedBox(height: 20.0,),
-              TextForm(hintText: "Please type your First Name", text: "First Name", Containerwidth: widthdevice/1.4
-              ),
-              TextForm(hintText: "Please type your Last Name", text: "Last Name", Containerwidth: widthdevice/1.4
-              ),
-              TextForm(hintText: "Please type your contact number", text: "Phone Number", Containerwidth: widthdevice/1.4
-              ),
-              TextForm(hintText: "Please type your Email Address", text: "Email", Containerwidth: widthdevice/1.4
-              ),
-              TextForm(hintText: "Please type your Message", text: "Message", Containerwidth: widthdevice/1.4,maxlines: 10,
-              ),
-              MaterialButton(onPressed: (){},
-                elevation: 20.0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular((5)),
-
-                ),
-                height: 60,
-                  minWidth: widthdevice/2.2,
-                color: Colors.lightBlueAccent,
-                child: SansBold("Submit",20.0),
-              )
-
-            ],
-          ),
-       ] ),
+            ),
+            SizedBox(height: 20.0,),
+            const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SansBold("About Me", 40.0),
+                    SizedBox(height: 10.0,),
+                    Sans(
+                        "Hello! I'm Prashant Bista. I specialize in flutter UI development",
+                        15.0),
+                    Sans(
+                        "I don't plan to stay a frontend developer. Soon, there will be more from me.",
+                        15.0),
+                    SizedBox(
+                      height: 15.0,
+                    ),
+                    Wrap(
+                      spacing: 7.0,
+                      runSpacing: 7.0,
+                      children: [
+                        BlueContainer(text: "Flutter"),
+                        BlueContainer(text: "Firebase"),
+                        BlueContainer(text: "Android"),
+                        BlueContainer(text: "Widows")
+                      ],
+                    )
+                  ],
+                )),
+          ],
+        ),
       ),
     ));
   }
