@@ -194,13 +194,13 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-               const SansBold("What I do", 40.0), const  AnimatedCardWeb(
+               const SansBold("What I do", 40.0), const  AnimatedCard(
                   imagepath: "assets/webL.png",
                   text: "Web Development",
                   width: 300.0,
                 ),
                 const  SizedBox(height: 35.0),
-                const AnimatedCardWeb(
+                const AnimatedCard(
                   imagepath: "assets/app.png",
                   text: "App Development",
                   width: 300.0,
@@ -208,7 +208,7 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
                   reverse: true,
                 ),
                 const SizedBox(height: 35.0),
-                const AnimatedCardWeb(
+                const AnimatedCard(
                   imagepath: "assets/firebase.png",
                   text: "Backend Development",
                   width: 300.0,

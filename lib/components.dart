@@ -199,17 +199,17 @@ class TextForm extends StatelessWidget {
   }
 }
 
-class AnimatedCardWeb extends StatefulWidget {
+class AnimatedCard extends StatefulWidget {
   final imagepath;
   final text;
   final fit;
   final reverse;
   final height;
   final width;
-  const AnimatedCardWeb({
+  const AnimatedCard({
     super.key,
     @required this.imagepath,
-    @required this.text,
+    this.text,
     this.fit,
     this.reverse,
     this.height,
@@ -217,10 +217,10 @@ class AnimatedCardWeb extends StatefulWidget {
   });
 
   @override
-  State<AnimatedCardWeb> createState() => _AnimatedCardWebState();
+  State<AnimatedCard> createState() => _AnimatedCardState();
 }
 
-class _AnimatedCardWebState extends State<AnimatedCardWeb>
+class _AnimatedCardState extends State<AnimatedCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller =
       AnimationController(vsync: this, duration: const Duration(seconds: 4))
@@ -263,7 +263,7 @@ class _AnimatedCardWebState extends State<AnimatedCardWeb>
               SizedBox(
                 height: 10.0,
               ),
-              SansBold(widget.text, 15.0),
+              widget.text==null?SizedBox():SansBold(widget.text, 15.0),
             ],
           ),
         ),
