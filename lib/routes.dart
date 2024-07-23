@@ -1,8 +1,10 @@
 import "package:flutter/material.dart";
 import "package:prashant_bista/mobile/about_mobile.dart";
+import "package:prashant_bista/mobile/blog_mobile.dart";
 import "package:prashant_bista/mobile/contact_mobile.dart";
 import "package:prashant_bista/mobile/landing_page_mobile.dart";
 import "package:prashant_bista/web/about_web.dart";
+import "package:prashant_bista/web/blog_web.dart";
 import "package:prashant_bista/web/contact_web.dart";
 import "package:prashant_bista/web/landing_page_web.dart";
 
@@ -34,6 +36,13 @@ class Routes {
           else
             return AboutMobile();
         }));
+      case '/blog':
+        return MaterialPageRoute(settings:settings ,builder: (_)=>LayoutBuilder(builder: (context,constraints){
+          if (constraints.maxWidth>=800)
+            return BlogWeb();
+          else
+            return BlogMobile();
+    }));
       default:
         return MaterialPageRoute(
             settings: settings,

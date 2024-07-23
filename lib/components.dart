@@ -3,7 +3,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+class AbelCustom extends StatelessWidget {
+  final text;
+  final size;
+  final color;
+  final fontWeight;
+  const AbelCustom({super.key, @required this.text,@required this.size, @required this.color, this.fontWeight});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(text,style: GoogleFonts.abel(
+      fontSize: size,
+      color: color==null?Colors.black:color,
+      fontWeight: fontWeight==null?FontWeight.normal:fontWeight,
+
+    ),);
+  }
+}
 
 class TabsWeb extends StatefulWidget {
   final title;
