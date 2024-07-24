@@ -127,7 +127,27 @@ class _WorksWebState extends State<WorksWeb> {
     ];
     },
       body: ListView(
-        children: [],
+        children: [
+          Column(
+            children: [
+              SizedBox(height: 30.0,),
+              SansBold("Works", 40.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  AnimatedCard(imagepath: "assets/portfolio.png",height: 200.0,width: 300.0,),
+                  SizedBox(width: widthDevice/3,
+                  child: Column(children: [
+                    SansBold("Portfolio",30.0 ),
+                    SizedBox(height: 15.0,),
+                    Sans("Deployed on Android,Ios and web ,the portfolio project was truly an achievement. I used Flutter framework for the UI and firebase for the backend tasks.", 15.0)
+
+                  ],),)
+                ],
+              )
+            ],
+          )
+        ],
       )
     ));
 }}
