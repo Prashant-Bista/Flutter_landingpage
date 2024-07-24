@@ -3,10 +3,12 @@ import "package:prashant_bista/mobile/about_mobile.dart";
 import "package:prashant_bista/mobile/blog_mobile.dart";
 import "package:prashant_bista/mobile/contact_mobile.dart";
 import "package:prashant_bista/mobile/landing_page_mobile.dart";
+import "package:prashant_bista/mobile/works_mobile.dart";
 import "package:prashant_bista/web/about_web.dart";
 import "package:prashant_bista/web/blog_web.dart";
 import "package:prashant_bista/web/contact_web.dart";
 import "package:prashant_bista/web/landing_page_web.dart";
+import "package:prashant_bista/web/works_web.dart";
 
 class Routes {
   static Route<dynamic>? generateRoutes(RouteSettings settings) {
@@ -43,6 +45,13 @@ class Routes {
           else
             return BlogMobile();
     }));
+      case '/works':
+        return MaterialPageRoute(settings:settings,builder: (_)=> LayoutBuilder(builder:(context,constraints){
+          if(constraints.maxWidth>=800)
+            return WorksWeb();
+          else
+            return WorksMobile();
+        }));
       default:
         return MaterialPageRoute(
             settings: settings,
