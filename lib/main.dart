@@ -1,11 +1,31 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:prashant_bista/mobile/landing_page_mobile.dart';
 import 'package:prashant_bista/routes.dart';
 import 'package:prashant_bista/web/landing_page_web.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'firebase_options.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
-void main() {
+void main() async{
   setPathUrlStrategy();
+  WidgetsFlutterBinding.ensureInitialized();
+  if(kIsWeb){
+    await Firebase.initializeApp(
+      options: FirebaseOptions(apiKey: "AIzaSyAaJQ2wSjrspjESujYtNEGZuvGDW0nQ_8k",
+          authDomain: "prashant-bista.firebaseapp.com",
+          projectId: "prashant-bista",
+          storageBucket: "prashant-bista.appspot.com",
+          messagingSenderId: "202425399869",
+          appId: "1:202425399869:web:fa409dd4b2fd3df0a40854",
+          measurementId: "G-0Y2KT6C2KX")
+    );
+  }
+  else {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
   runApp(const MyApp());
 }
 
