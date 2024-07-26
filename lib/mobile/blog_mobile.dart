@@ -152,17 +152,12 @@ class _BlogPostsState extends State<BlogPosts> {
             color: Colors.black,
             borderRadius: BorderRadius.circular(3.0),
           ),
-          child: Text("Maharaja recieves highly positive judgements from critics.",style: GoogleFonts.abel(
-            fontSize: widthdevice/28.0,
-            color: Colors.white,
-            fontWeight: FontWeight.normal,
-
-          ),),
-          // AbelCustom(
-          // text: "Maharaja recieves highly positive judgements from critics.",size:widthdevice/28.0 ,
-          // color: Colors.white,
+          child:
+          AbelCustom(
+          text: "Maharaja recieves highly positive judgements from critics.",size:widthdevice/28.0 ,
+          color: Colors.white,
         ),
-
+        ),
           IconButton(onPressed: (){
             setState(() {
               expand=!expand;
