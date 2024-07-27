@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +13,18 @@ class BlogMobile extends StatefulWidget {
 }
 
 class _BlogMobileState extends State<BlogMobile> {
+  void article()async{
+    await FirebaseFirestore.instance.collection("articles").get().then((querySnapshot){
+      querySnapshot.docs.forEach((element){
+        print(element.data()['titile']);
+      });
+    });
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    article();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
