@@ -161,7 +161,7 @@ class _BlogPostsState extends State<BlogPosts> {
                 borderRadius: BorderRadius.circular(3.0),
               ),
               child: AbelCustom(
-                text: widget.title,size:25.0 ,
+                text: widget.title.toString(),size:25.0 ,
                 color: Colors.white,
               ),
             ),
@@ -173,7 +173,7 @@ class _BlogPostsState extends State<BlogPosts> {
             ],
           ),
             SizedBox(height:7.0),
-            Text(widget.body,
+            Text(widget.body.toString(),
               style: GoogleFonts.openSans(fontSize: 15.0),maxLines: expand==true?null:3,
               overflow: expand==true?TextOverflow.visible:TextOverflow.ellipsis,)
           ],
