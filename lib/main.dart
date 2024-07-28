@@ -10,21 +10,10 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 void main() async {
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
-  if (kIsWeb){
-    await Firebase.initializeApp(options:FirebaseOptions(
-        apiKey: "AIzaSyAaJQ2wSjrspjESujYtNEGZuvGDW0nQ_8k",
-        authDomain: "prashant-bista.firebaseapp.com",
-        projectId: "prashant-bista",
-        storageBucket: "prashant-bista.appspot.com",
-        messagingSenderId: "202425399869",
-        appId: "1:202425399869:web:a6e8e7f3730dee83a40854",
-        measurementId: "G-JNJCYZD1HK"
-    ));
-  }
-  else{
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
-}}
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
