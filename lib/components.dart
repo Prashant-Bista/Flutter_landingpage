@@ -1,10 +1,26 @@
 //Since we are going to modify the widget of the title property a lot more.
 // It would be best to move the widget from the title property and collect it from the components file.
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
+
+class AddDataFirestore{
+  var logger =Logger();
+  CollectionReference response =  FirebaseFirestore.instance.collection('messages');
+  Future<void> addResponse(final firstName, final lastName ,final email, final phoneNumber, final message){
+    return response.add({
+      'first name' : firstName,
+      'last name' : lastName,
+      'email' : email,
+      'phone number' : phoneNumber,
+      'message' : message,
+    }).then((value)=>logger.d("Success")).catchError((error)=>logger.d(error));
+  }
+}
 class AbelCustom extends StatelessWidget {
   final text;
   final size;
@@ -161,12 +177,14 @@ class TextForm extends StatelessWidget {
   final hintText;
   final Containerwidth;
   final maxlines;
+  final controller;
+  final validator;
   const TextForm(
       {super.key,
       @required this.hintText,
       @required this.text,
       @required this.Containerwidth,
-      this.maxlines});
+      this.maxlines, this.controller, this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -180,15 +198,25 @@ class TextForm extends StatelessWidget {
         SizedBox(
           width: 350,
           child: TextFormField(
+
+            validator: validator,
+            controller: controller,
             maxLines: maxlines == null ? null : maxlines,
             decoration: InputDecoration(
               focusedErrorBorder: OutlineInputBorder(
                 borderSide:
-                    BorderSide(color: Colors.red, style: BorderStyle.solid),
+                    BorderSide(color: Colors.pink, style: BorderStyle.solid),
                 borderRadius: BorderRadius.all(
                   Radius.circular(10.0),
                 ),
               ),
+              errorBorder: OutlineInputBorder(
+    borderSide: BorderSide(
+    color: Colors.red, style: BorderStyle.solid),
+    borderRadius: BorderRadius.all(
+    Radius.circular(15.0),
+    ),
+    ),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                     color: Colors.lightBlue, style: BorderStyle.solid),
@@ -203,13 +231,6 @@ class TextForm extends StatelessWidget {
               hintText: hintText,
               hintStyle: GoogleFonts.poppins(fontSize: 14.0),
             ),
-            validator: (text) {
-              if (RegExp("\\bprashant\\b", caseSensitive: false)
-                  .hasMatch(text.toString())) {
-                return "Match found";
-              }
-            },
-            autovalidateMode: AutovalidateMode.onUserInteraction,
           ),
         ),
       ],
@@ -288,4 +309,13 @@ class _AnimatedCardState extends State<AnimatedCard>
       ),
     );
   }
+}
+Future DialogError(BuildContext context){
+  return  showDialog(context: context, builder: (BuildContext context)=>AlertDialog(
+    title: SansBold("Message Submitted",20.0),
+    shape: RoundedRectangleBorder(
+      side: BorderSide(color: Colors.lightBlueAccent),
+      borderRadius: BorderRadius.circular(10.0),
+    ),
+  ));
 }

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../components.dart';
@@ -14,35 +15,36 @@ class BlogMobile extends StatefulWidget {
 }
 
 class _BlogMobileState extends State<BlogMobile> {
-  List title= ["Maharaja recieves positive reviews from all the critics.","Winners of the Global Gamers Challenge"];
-  List body=["Look for the article in times of india.","Look for the article in Medium website"];
-  void article() async {
-    await FirebaseFirestore.instance
-        .collection("articles")
-        .get()
-        .then((querySnapshot) {
-      querySnapshot.docs
-        ..forEach((element) {
-          //print(element.data()['title']);
-        });
-    });
-  }
+  // List title= ["Maharaja recieves positive reviews from all the critics.","Winners of the Global Gamers Challenge"];
+  // List body=["Look for the article in times of india.","Look for the article in Medium website"];
+  // void article() async {
+  //   await FirebaseFirestore.instance
+  //       .collection("articles")
+  //       .get()
+  //       .then((querySnapshot) {
+  //     querySnapshot.docs
+  //       ..forEach((element) {
+  //         //print(element.data()['title']);
+  //       });
+  //   });
+  // }
+  //
+  // void streamArticle() async {
+  //   var logger =Logger();
+  //   await for (var snapshot
+  //       in FirebaseFirestore.instance.collection(('articles')).snapshots()) {
+  //     for (var title in snapshot.docs){
+  //       logger.d(title.data()['title']);
+  //     }
+  //   }
+  // }
 
-  void streamArticle() async {
-    await for (var snapshot
-        in FirebaseFirestore.instance.collection(('articles')).snapshots()) {
-      for (var title in snapshot.docs){
-        print(title.data()['title']);
-      }
-    }
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    streamArticle();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   streamArticle();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {

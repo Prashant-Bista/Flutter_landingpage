@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 import 'package:prashant_bista/components.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -12,6 +13,13 @@ class LandingaPageMobile extends StatefulWidget {
 }
 
 class _LandingaPageMobileState extends State<LandingaPageMobile> {
+  var logger=Logger();
+  final formKey = GlobalKey<FormState>();
+  final TextEditingController _firstNameController=TextEditingController();
+  final TextEditingController _lastNameController=TextEditingController();
+  final TextEditingController _emailController=TextEditingController();
+  final TextEditingController _phoneController=TextEditingController();
+  final TextEditingController _messageController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     var widthDevice = MediaQuery.of(context).size.width;
@@ -227,41 +235,77 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
                     ],
                   ),
                   const SizedBox(height: 30),
-                  Wrap(
-                    spacing: 20.0,
-                    runSpacing: 20.0,
-                    alignment: WrapAlignment.center,
-                    children: [
-                      TextForm(
-                          text: "First Name",
-                          hintText: "Please Enter your first Name",
-                          Containerwidth: widthDevice / 1.4),
-                      TextForm(
-                          text: "Last Name",
-                          hintText: "Please Enter your last Name",
-                          Containerwidth: widthDevice / 1.4),
-                      TextForm(
-                          text: "Email",
-                          hintText: "Please Enter your email address",
-                          Containerwidth: widthDevice / 1.4),
-                      TextForm(
-                          text: "Phone number",
-                          hintText: "Please Enter your Phone number",
-                          Containerwidth: widthDevice / 1.4),
-                      TextForm(
-                        text: "Message Here",
-                        hintText: "Please Enter your Message",
-                        Containerwidth: widthDevice / 1.4,
-                        maxlines: 10,
-                      ),
-                    ],
+                  Form(
+                    key: formKey,
+                    child: Wrap(
+                      spacing: 20.0,
+                      runSpacing: 20.0,
+                      alignment: WrapAlignment.center,
+                      children: [
+                        TextForm(
+                            validator: (text){
+                              if (text.toString().isEmpty){
+                                return "First Name is required";
+                              }
+                            },
+                          controller: _firstNameController,
+                            text: "First Name",
+                            hintText: "Please Enter your first Name",
+                            Containerwidth: widthDevice / 1.4),
+                        TextForm(
+                            validator: (text){
+                              if (text.toString().isEmpty){
+                                return "Last Name is required";
+                              }
+                            },
+                          controller: _lastNameController,
+                            text: "Last Name",
+                            hintText: "Please Enter your last Name",
+                            Containerwidth: widthDevice / 1.4),
+                        TextForm(
+                          validator: (text){
+                            if (text.toString().isEmpty){
+                              return "Email is required";
+                            }
+                          },
+                          controller: _emailController,
+                            text: "Email",
+                            hintText: "Please Enter your email address",
+                            Containerwidth: widthDevice / 1.4),
+                        TextForm(
+                          controller: _phoneController,
+                            text: "Phone number",
+                            hintText: "Please Enter your Phone number",
+                            Containerwidth: widthDevice / 1.4),
+                        TextForm(
+                          validator: (text){
+                            if (text.toString().isEmpty){
+                              return "Message is required";
+                            }
+                          },
+                          controller: _messageController,
+                          text: "Message Here",
+                          hintText: "Please Enter your Message",
+                          Containerwidth: widthDevice / 1.4,
+                          maxlines: 10,
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                    MaterialButton(
                     color: Colors.lightBlueAccent,
-                    onPressed: () {},
+                    onPressed: () async {
+                      logger.d(_firstNameController.text);
+                      final addData= new AddDataFirestore();
+                      if (formKey.currentState!.validate()){
+                        await addData.addResponse(_firstNameController.text, _lastNameController.text, _emailController.text, _phoneController.text, _messageController.text);
+                        formKey.currentState!.reset();
+                        DialogError(context);
+                      }
+                    },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0)),
                     height: 60.0,
