@@ -301,9 +301,11 @@ class _LandingaPageMobileState extends State<LandingaPageMobile> {
                       logger.d(_firstNameController.text);
                       final addData= new AddDataFirestore();
                       if (formKey.currentState!.validate()){
-                        await addData.addResponse(_firstNameController.text, _lastNameController.text, _emailController.text, _phoneController.text, _messageController.text);
-                        formKey.currentState!.reset();
-                        DialogError(context);
+                        if(await addData.addResponse(_firstNameController.text, _lastNameController.text, _emailController.text, _phoneController.text, _messageController.text)){
+                          formKey.currentState!.reset();
+                          DialogError(context,"Message sent successfully");
+                        }
+                        else DialogError(context,"Message failed to send");
                       }
                     },
                     shape: RoundedRectangleBorder(

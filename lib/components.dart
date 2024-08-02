@@ -8,34 +8,50 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logger/logger.dart';
 
-class AddDataFirestore{
-  var logger =Logger();
-  CollectionReference response =  FirebaseFirestore.instance.collection('messages');
-  Future<void> addResponse(final firstName, final lastName ,final email, final phoneNumber, final message){
+class AddDataFirestore {
+  var logger = Logger();
+  CollectionReference response =
+      FirebaseFirestore.instance.collection('messages');
+  Future addResponse(final firstName, final lastName, final email,
+      final phoneNumber, final message) {
     return response.add({
-      'first name' : firstName,
-      'last name' : lastName,
-      'email' : email,
-      'phone number' : phoneNumber,
-      'message' : message,
-    }).then((value)=>logger.d("Success")).catchError((error)=>logger.d(error));
+      'first name': firstName,
+      'last name': lastName,
+      'email': email,
+      'phone number': phoneNumber,
+      'message': message,
+    }).then((value) {
+      logger.d("Succenss");
+      return true;
+    }).catchError((error) {
+      logger.d(error);
+      return false;
+    });
   }
 }
+
 class AbelCustom extends StatelessWidget {
   final text;
   final size;
   final color;
   final fontWeight;
-  const AbelCustom({super.key, @required this.text,@required this.size, @required this.color, this.fontWeight});
+  const AbelCustom(
+      {super.key,
+      @required this.text,
+      @required this.size,
+      @required this.color,
+      this.fontWeight});
 
   @override
   Widget build(BuildContext context) {
-    return Text(text,style: GoogleFonts.abel(
-      fontSize: size,
-      color: color==null?Colors.black:color,
-      fontWeight: fontWeight==null?FontWeight.normal:fontWeight,
-
-    ),);
+    return Text(
+      text,
+      style: GoogleFonts.abel(
+        fontSize: size,
+        color: color == null ? Colors.black : color,
+        fontWeight: fontWeight == null ? FontWeight.normal : fontWeight,
+      ),
+    );
   }
 }
 
@@ -184,7 +200,9 @@ class TextForm extends StatelessWidget {
       @required this.hintText,
       @required this.text,
       @required this.Containerwidth,
-      this.maxlines, this.controller, this.validator});
+      this.maxlines,
+      this.controller,
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -198,7 +216,6 @@ class TextForm extends StatelessWidget {
         SizedBox(
           width: 350,
           child: TextFormField(
-
             validator: validator,
             controller: controller,
             maxLines: maxlines == null ? null : maxlines,
@@ -211,12 +228,12 @@ class TextForm extends StatelessWidget {
                 ),
               ),
               errorBorder: OutlineInputBorder(
-    borderSide: BorderSide(
-    color: Colors.red, style: BorderStyle.solid),
-    borderRadius: BorderRadius.all(
-    Radius.circular(15.0),
-    ),
-    ),
+                borderSide:
+                    BorderSide(color: Colors.red, style: BorderStyle.solid),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15.0),
+                ),
+              ),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                     color: Colors.lightBlue, style: BorderStyle.solid),
@@ -302,7 +319,7 @@ class _AnimatedCardState extends State<AnimatedCard>
               SizedBox(
                 height: 10.0,
               ),
-              widget.text==null?SizedBox():SansBold(widget.text, 15.0),
+              widget.text == null ? SizedBox() : SansBold(widget.text, 15.0),
             ],
           ),
         ),
@@ -310,12 +327,15 @@ class _AnimatedCardState extends State<AnimatedCard>
     );
   }
 }
-Future DialogError(BuildContext context){
-  return  showDialog(context: context, builder: (BuildContext context)=>AlertDialog(
-    title: SansBold("Message Submitted",20.0),
-    shape: RoundedRectangleBorder(
-      side: BorderSide(color: Colors.lightBlueAccent),
-      borderRadius: BorderRadius.circular(10.0),
-    ),
-  ));
+
+Future DialogError(BuildContext context,String title) {
+  return showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+            title: SansBold(title, 20.0),
+            shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.lightBlueAccent),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ));
 }
