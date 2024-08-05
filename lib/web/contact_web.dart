@@ -13,7 +13,6 @@ class ContactWeb extends StatefulWidget {
 class _ContactWebState extends State<ContactWeb> {
   @override
   Widget build(BuildContext context) {
-    var widthDevice = MediaQuery.of(context).size.width;
     return Scaffold(
       drawer: DrawersWeb(),
       backgroundColor: Colors.white,
@@ -39,75 +38,7 @@ class _ContactWebState extends State<ContactWeb> {
             ];
           },
           body: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 30.0,
-                ),
-                SansBold("Contact me", 40.0),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        TextForm(
-                            hintText: "Please Enter your Firstname",
-                            text: "First Name",
-                            Containerwidth: 350.0),
-                        SizedBox(
-                          height: 25.0,
-                        ),
-                        TextForm(
-                            hintText: "Please Enter your Email address",
-                            text: "Email",
-                            Containerwidth: 350.0)
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        TextForm(
-                            hintText: "Please Enter your Last Name",
-                            text: "Last Name",
-                            Containerwidth: 350.0),
-                        SizedBox(
-                          height: 25.0,
-                        ),
-                        TextForm(
-                            hintText: "Please Enter your Phone Number",
-                            text: "Phone NUmber",
-                            Containerwidth: 350.0)
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                TextForm(
-                  hintText: ("Please Enter your Message"),
-                  text: "Message",
-                  Containerwidth: widthDevice / 1.5,
-                  maxlines: 10,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                MaterialButton(
-                  child: Sans("Submit", 20.0),
-                  onPressed: () {},
-                  elevation: 20.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  color: Colors.lightBlueAccent,
-                  height: 60.0,
-                  minWidth: 200.0,
-                )
-              ],
-            ),
+            child: ContactFormWeb(),
           )),
     );
   }

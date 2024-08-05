@@ -24,13 +24,6 @@ class _LandingaPageWebState extends State<LandingPageWeb> {
           height: 35.0,
         ));
   }
-  var logger=Logger();
-  final TextEditingController _firstNameController=TextEditingController();
-  final TextEditingController _lastNameController=TextEditingController();
-  final TextEditingController _emailController=TextEditingController();
-  final TextEditingController _phoneController=TextEditingController();
-  final TextEditingController _messageController=TextEditingController();
-  final formKey =GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var heightdevice = MediaQuery.of(context).size.height;
@@ -291,104 +284,11 @@ class _LandingaPageWebState extends State<LandingPageWeb> {
           ),
         ),
         //Forth Section
-        Container(
-          height: heightdevice,
-          child: Form(
-            key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SansBold("Contact Me", 40.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        TextForm(
-                          controller: _firstNameController,
-                          hintText: "Enter the first name",
-                          text: "First Name",
-                          Containerwidth: 350,
-                          validator: (text){
-                            if (text.toString().isEmpty){
-                              return "First Name is required";
-                            }
-                          },
-                        ),
-                        SizedBox(height: 15),
-                        TextForm(
-                          controller: _emailController,
-                            hintText: "Please enter your Email Address",
-                            text: "Email",
-                            Containerwidth: 350,
-                          validator: (text){
-                            if (text.toString().isEmpty){
-                              return "Email is required";
-                            }
-                          },),
-                      ],
-                    ),
-                    Column(
-                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextForm(
-                          controller: _lastNameController,
-                            hintText: "Please Enter your Last Name",
-                            text: "Last Name",
-                            Containerwidth: 350,
-                          validator: (text){
-                            if (text.toString().isEmpty){
-                              return "Message is required";
-                            }
-                          },),
-                        SizedBox(height: 15.0),
-                        TextForm(
-                          controller: _phoneController,
-                            hintText: ("Please Enter your phone number "),
-                            text: "Phone Number",
-                            Containerwidth: 350)
-                      ],
-                    )
-                  ],
-                ),
-                TextForm(
-                  controller: _messageController,
-                  hintText: "Please type your message",
-                  text: "Message",
-                  Containerwidth: widthdevice / 1.5,
-                  maxlines: 10,
-                ),
-                MaterialButton(
-                  onPressed: ()async {
-                    logger.d(_firstNameController.text);
-                    final addData= new AddDataFirestore();
-                   if (formKey.currentState!.validate()){
-                     if (await addData.addResponse(_firstNameController.text, _lastNameController.text, _emailController.text, _phoneController.text, _messageController.text)){
-                       formKey.currentState!.reset();
-                       DialogError(context,"Message sent successfully");
-                     }
-                     else DialogError(context,"Message failed to send");
-                   }
-                  },
-                  elevation: 20.0,
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.lightBlueAccent),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  height: 60.0,
-                  minWidth: 200.0,
-                  color: Colors.lightBlueAccent,
-                  child: SansBold("Submit", 20.0),
-                ),
-                SizedBox(
-                  height: 20.0,
-                )
-              ],
-            ),
-          ),
-        )
+        SizedBox(height:20.0 ,),
+        ContactFormWeb(),
+        SizedBox(height: 20.0,)
       ]),
+
     );
   }
 }
