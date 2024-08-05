@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:prashant_bista/firebase_options.dart';
 import 'package:prashant_bista/mobile/landing_page_mobile.dart';
 import 'package:prashant_bista/routes.dart';
@@ -24,6 +25,7 @@ void main() async {
     );
   }
   else {
+    GoogleFonts.config.allowRuntimeFetching=false;
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
   }

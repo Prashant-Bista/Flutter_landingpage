@@ -67,38 +67,7 @@ class _AboutWebState extends State<AboutWeb> {
         //Extra elevation creates a bad separation between
         //appbar and rest of the body
         iconTheme: IconThemeData(size: 25.0, color: Colors.orange),
-        title: Row(
-          children: [
-            Spacer(
-              flex: 3,
-            ),
-            TabsWeb(
-              title: "Home",
-              route: '/',
-            ),
-            Spacer(),
-            TabsWeb(
-              title: "Works",
-              route: "/works",
-            ),
-            Spacer(),
-            TabsWeb(
-              title: "Blogs",
-              route: "/blogs",
-            ),
-            Spacer(),
-            TabsWeb(
-              title: "About",
-              route: "/about",
-            ),
-            Spacer(),
-            TabsWeb(
-              title: "Contact",
-              route: "/contact",
-            ),
-            Spacer(),
-          ],
-        ),
+        title: TabseWebList(),
       ),
       body: ListView(
         //About me, first Section

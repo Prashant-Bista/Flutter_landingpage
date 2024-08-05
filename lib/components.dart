@@ -8,6 +8,51 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logger/logger.dart';
 
+class TabseWebList extends StatefulWidget {
+  const TabseWebList({super.key});
+
+  @override
+  State<TabseWebList> createState() => _TabseWebListState();
+}
+
+class _TabseWebListState extends State<TabseWebList> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Spacer(
+          flex: 3,
+        ),
+        TabsWeb(
+          title: "Home",
+          route: '/',
+        ),
+        Spacer(),
+        TabsWeb(
+          title: "Works",
+          route: '/works',
+        ),
+        Spacer(),
+        TabsWeb(
+          title: "Blog",
+          route: '/blog',
+        ),
+        Spacer(),
+        TabsWeb(
+          title: "About",
+          route: '/about',
+        ),
+        Spacer(),
+        TabsWeb(
+          title: "Contact",
+          route: '/',
+        ),
+        Spacer(),
+      ],
+    );
+  }
+}
+
 class AddDataFirestore {
   var logger = Logger();
   CollectionReference response =
