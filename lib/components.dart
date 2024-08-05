@@ -9,11 +9,119 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logger/logger.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+var logger = Logger();
+final TextEditingController _emailController = TextEditingController();
+final TextEditingController _firstController = TextEditingController();
+final TextEditingController _lastController = TextEditingController();
+final TextEditingController _phoneController = TextEditingController();
+final TextEditingController _messageController = TextEditingController();
 urlLauncher(String imagePath,String url){
   return IconButton(onPressed: () async {
     await launchUrl(Uri.parse(url));
   }, icon: SvgPicture.asset(imagePath,height: 20,width: 20,));
 }
+class ContactFormMobile extends StatefulWidget {
+  const ContactFormMobile({super.key});
+
+  @override
+  State<ContactFormMobile> createState() => _ContactFormMobileState();
+}
+
+class _ContactFormMobileState extends State<ContactFormMobile> {
+
+  final formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    double widthdevice = MediaQuery.of(context).size.width;
+
+    return  Form(
+      key: formKey,
+      child: Column(
+        children: [
+          SansBold("Contact Me", 35.0),
+          SizedBox(
+            height: 20.0,
+          ),
+          TextForm(
+              controller: _firstController,
+              hintText: "Please type your First Name",
+              text: "First Name",
+              Containerwidth: widthdevice / 1.4,
+              validator: (text){
+                if (text.toString().length==0){
+                  return "First Name is required";
+                }}),
+          TextForm(
+              controller: _lastController,
+              hintText: "Please type your Last Name",
+              text: "Last Name",
+              Containerwidth: widthdevice / 1.4),
+          TextForm(
+            controller: _phoneController,
+            hintText: "Please type your contact number",
+            text: "Phone Number",
+            Containerwidth: widthdevice / 1.4,
+          ),
+          TextForm(
+              controller: _emailController,
+              hintText: "Please type your Email Address",
+              text: "Email",
+              Containerwidth: widthdevice / 1.4,
+              validator: (text){
+                if (text.toString().length==0){
+                  return "Email is required";
+                }}
+          ),
+
+          TextForm(
+            controller: _messageController,
+            hintText: "Please type your Message",
+            text: "Message",
+            Containerwidth: widthdevice / 1.4,
+            maxlines: 10,
+            validator: (text){
+              if (text.toString().length==0){
+                return "Message is required";
+              }
+            },
+          ),
+          SizedBox(height:20),
+          MaterialButton(
+            onPressed: () async {
+              logger.d(_firstController.text);
+              var addData = new AddDataFirestore();
+              if (formKey.currentState!.validate()) {
+                if (await addData.addResponse(
+                    _firstController.text, _lastController.text,
+                    _emailController.text, _phoneController.text,
+                    _messageController.text)) {
+                  formKey.currentState!.reset();
+                  DialogError(context, "Message Sent Successfully");
+                }
+                else{
+                  DialogError(context, "Message Failed to send");
+                }
+
+              }
+            },
+            elevation: 20.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular((5)),
+            ),
+            height: 60,
+            minWidth: widthdevice / 2.2,
+            color: Colors.lightBlueAccent,
+            child: SansBold("Submit", 20.0),
+          ),
+          SizedBox(height: 20,)
+        ],
+      ),
+    );
+  }
+}
+
+
 class ContactFormWeb extends StatefulWidget {
   const ContactFormWeb({super.key});
 
@@ -23,12 +131,6 @@ class ContactFormWeb extends StatefulWidget {
 
 class _ContactFormWebState extends State<ContactFormWeb> {
   final formKey= GlobalKey<FormState>();
-  var logger=Logger();
-  final TextEditingController _firstNameController=TextEditingController();
-  final TextEditingController _lastNameController=TextEditingController();
-  final TextEditingController _emailController=TextEditingController();
-  final TextEditingController _phoneController=TextEditingController();
-  final TextEditingController _messageController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     var heightdevice = MediaQuery.of(context).size.height;
@@ -45,7 +147,7 @@ class _ContactFormWebState extends State<ContactFormWeb> {
               Column(
                 children: [
                   TextForm(
-                    controller: _firstNameController,
+                    controller: _firstController,
                     hintText: "Enter the first name",
                     text: "First Name",
                     Containerwidth: 350,
@@ -73,7 +175,7 @@ class _ContactFormWebState extends State<ContactFormWeb> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextForm(
-                    controller: _lastNameController,
+                    controller: _lastController,
                     hintText: "Please Enter your Last Name",
                     text: "Last Name",
                     Containerwidth: 350,
@@ -102,10 +204,10 @@ class _ContactFormWebState extends State<ContactFormWeb> {
           ),
           MaterialButton(
             onPressed: ()async {
-              logger.d(_firstNameController.text);
+              logger.d(_firstController.text);
               final addData= new AddDataFirestore();
               if (formKey.currentState!.validate()){
-                if (await addData.addResponse(_firstNameController.text, _lastNameController.text, _emailController.text, _phoneController.text, _messageController.text)){
+                if (await addData.addResponse(_firstController.text, _lastController.text, _emailController.text, _phoneController.text, _messageController.text)){
                   formKey.currentState!.reset();
                   DialogError(context,"Message sent successfully");
                 }
@@ -279,7 +381,6 @@ class _TabseWebListState extends State<TabseWebList> {
 }
 
 class AddDataFirestore {
-  var logger = Logger();
   CollectionReference response =
       FirebaseFirestore.instance.collection('messages');
   Future addResponse(final firstName, final lastName, final email,

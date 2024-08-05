@@ -182,74 +182,23 @@ class _LandingaPageWebState extends State<LandingPageWeb> {
                   ),
                   Row(
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.lightBlueAccent,
-                            style: BorderStyle.solid,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(7.0),
-                        ),
-                        child: Sans("Flutter", 15.0),
-                      ),
+                      BlueContainer(text: "Flutter"),
+                      SizedBox(
+                        width: 7.0,
+                      ), 
+          BlueContainer(text: "Firebase"),
+                      SizedBox(
+                        width: 7,
+                      ), 
+          BlueContainer(text: "Android"),
                       SizedBox(
                         width: 7.0,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.lightBlueAccent,
-                            style: BorderStyle.solid,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(7.0),
-                        ),
-                        child: Sans("Firebase", 15.0),
-                      ),
+BlueContainer(text: "IOS"),
                       SizedBox(
                         width: 7,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.lightBlueAccent,
-                            style: BorderStyle.solid,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(7),
-                        ),
-                        child: Sans("Android", 15.0),
-                      ),
-                      SizedBox(
-                        width: 7.0,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.lightBlueAccent,
-                            style: BorderStyle.solid,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(7.0),
-                        ),
-                        child: Sans("IOS", 15.0),
-                      ),
-                      SizedBox(
-                        width: 7,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.lightBlueAccent,
-                            style: BorderStyle.solid,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(7.0),
-                        ),
-                        child: Sans("Linux", 15.0),
-                      )
-                    ],
+BlueContainer(text: "windows")                    ],
                   )
                 ],
               ),
