@@ -5,8 +5,116 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logger/logger.dart';
+import 'package:url_launcher/url_launcher.dart';
+urlLauncher(String imagePath,String url){
+  return IconButton(onPressed: () async {
+    await launchUrl(Uri.parse(url));
+  }, icon: SvgPicture.asset(imagePath,height: 20,width: 20,));
+}
+class DrawersMobile extends StatelessWidget {
+  const DrawersMobile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          DrawerHeader(
+              padding: EdgeInsets.only(bottom: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(width: 2.0, color: Colors.black)),
+                child: Image.asset('assets/PP-circle.png'),
+              )),
+          TabsMobile(text: "Home", route: "/"),
+          SizedBox(
+            height: 20,
+          ),
+          TabsMobile(text: "About", route: '/about'),
+          SizedBox(
+            height: 20,
+          ),
+          TabsMobile(text: "Works", route: '/works'),
+          SizedBox(
+            height: 20,
+          ),
+          TabsMobile(text: "Blog", route: '/blog'),
+          SizedBox(
+            height: 20,
+          ),
+          TabsMobile(text: "Contact", route: '/contact'),
+          SizedBox(
+            height: 40,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              urlLauncher("assets/instagram.svg", "https://www.instagram.com/prashantbista7/"),
+              urlLauncher("assets/github.svg", "https://github.com/Prashant-Bista"),
+              IconButton(onPressed: () async {
+                await launchUrl(Uri.parse("https://www.linkedin.com/in/prashant-bista-9016b5270/"));
+              }, icon: Image.asset("assets/linkedin.png",height: 20,width: 20,))
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+
+class DrawersWeb extends StatelessWidget {
+  const DrawersWeb({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    urlLauncher(String imagePath,String url){
+      return IconButton(onPressed: () async {
+        await launchUrl(Uri.parse(url));
+      }, icon: SvgPicture.asset(imagePath,height: 20,width: 20,));
+    }
+    return Drawer(
+      backgroundColor: Colors.white,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircleAvatar(
+            radius: 72.0,
+            backgroundColor: Colors.lightBlueAccent,
+            child: CircleAvatar(
+              radius: 70.0,
+              backgroundColor: Colors.white,
+              backgroundImage: AssetImage("assets/PP-circle.png"),
+            ),
+          ),
+          SizedBox(
+            height: 15.0,
+          ),
+          SansBold("Prashant Bista", 30.0),
+          SizedBox(
+            height: 15.0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              urlLauncher("assets/instagram.svg", "https://www.instagram.com/prashantbista7/"),
+              urlLauncher("assets/github.svg", "https://github.com/Prashant-Bista"),
+              IconButton(onPressed: () async {
+                await launchUrl(Uri.parse("https://www.linkedin.com/in/prashant-bista-9016b5270/"));
+              }, icon: Image.asset("assets/linkedin.png",height: 20,width: 20,))
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
 
 class TabseWebList extends StatefulWidget {
   const TabseWebList({super.key});

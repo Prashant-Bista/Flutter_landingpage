@@ -36,40 +36,7 @@ class _LandingaPageWebState extends State<LandingPageWeb> {
     var heightdevice = MediaQuery.of(context).size.height;
     var widthdevice = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: Drawer(
-        //To create a drawer menu
-        backgroundColor: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 72.0,
-              backgroundColor: Colors.lightBlueAccent,
-              child: CircleAvatar(
-                radius: 70.0,
-                backgroundColor: Colors.white,
-                backgroundImage: AssetImage("assets/PP-circle.png"),
-              ),
-            ),
-            SizedBox(
-              height: 50.0,
-            ),
-            SansBold("Prashant Bisa", 30.0),
-            SizedBox(height: 15.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                urlLauncher("assets/instagram.png",
-                    "https://www.instagram.com/prashantbista7/"),
-                urlLauncher(
-                    "assets/github.png", "https://github.com/Prashant-Bista"),
-                urlLauncher("assets/linkedin.png",
-                    "https://www.linkedin.com/in/prashant-bista-9016b5270/")
-              ],
-            )
-          ],
-        ),
-      ),
+      drawer: Drawer(),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
